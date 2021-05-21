@@ -22,7 +22,7 @@ import java.net.URLEncoder;
  * @author imooc
  * @version V1.0
  */
-//配置cookie的使用
+//配置cookie的使用的一些方法
 public final class CookieUtils {
 
     final static Logger logger = LoggerFactory.getLogger(CookieUtils.class);
