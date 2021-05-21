@@ -1,0 +1,14 @@
+com\lank\mapper\ItemsParamMapper.class
+com\lank\mapper\UsersMapper.class
+com\lank\mapper\ItemsSpecMapper.class
+com\lank\mapper\OrderItemsMapper.class
+com\lank\mapper\ItemsCommentsMapper.class
+com\lank\mapper\OrdersMapper.class
+com\lank\mapper\CarouselMapper.class
+com\lank\mapper\OrderStatusMapper.class
+com\lank\mapper\ItemsImgMapper.class
+com\lank\my\mapper\MyMapper.class
+com\lank\mapper\StuMapper.class
+com\lank\mapper\CategoryMapper.class
+com\lank\mapper\ItemsMapper.class
+com\lank\mapper\UserAddressMapper.class

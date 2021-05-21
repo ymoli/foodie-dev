@@ -1,0 +1,14 @@
+com\lank\pojo\Stu.class
+com\lank\pojo\OrderItems.class
+com\lank\pojo\ItemsSpec.class
+com\lank\pojo\OrderStatus.class
+com\lank\pojo\bo\UserBo.class
+com\lank\pojo\Category.class
+com\lank\pojo\ItemsComments.class
+com\lank\pojo\Carousel.class
+com\lank\pojo\ItemsImg.class
+com\lank\pojo\ItemsParam.class
+com\lank\pojo\UserAddress.class
+com\lank\pojo\Orders.class
+com\lank\pojo\Users.class
+com\lank\pojo\Items.class

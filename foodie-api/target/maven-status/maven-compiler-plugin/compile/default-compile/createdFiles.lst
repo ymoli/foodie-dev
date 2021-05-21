@@ -1,0 +1,7 @@
+com\lank\config\CorsConfig.class
+com\lank\controller\PassportController.class
+com\lank\Application.class
+com\lank\aspect\ServiceLogAspect.class
+com\lank\controller\HelloController.class
+com\lank\controller\StuController.class
+com\lank\config\Swagger2.class
