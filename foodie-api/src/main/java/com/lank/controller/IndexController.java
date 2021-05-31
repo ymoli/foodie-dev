@@ -4,6 +4,7 @@ import com.lank.enums.YesOrNo;
 import com.lank.pojo.Carousel;
 import com.lank.pojo.Category;
 import com.lank.pojo.vo.CategoryVo;
+import com.lank.pojo.vo.NewItemsVo;
 import com.lank.service.CarouselService;
 import com.lank.service.CategoryService;
 import com.lank.utils.JSONResult;
@@ -59,10 +60,25 @@ public class IndexController {
             @PathVariable Integer rootCatId){
 
         if (rootCatId == null){
-            return JSONResult.errorMsg("");
+            return JSONResult.errorMsg("分类不存在");
         }
 
         List<CategoryVo> list = categoryService.getSubCatList(rootCatId);
+
+        return JSONResult.ok(list);
+    }
+
+    @GetMapping("/sixNewItems/{rootCatId}")
+    @ApiOperation(value = "查询一级分类下的最新6条商品数据",notes = "查询一级分类下的最新6条商品数据",httpMethod = "GET")
+    public JSONResult sixNewItems(
+            @ApiParam(name = "rootCatId",value = "一级分类id",required = true)
+            @PathVariable Integer rootCatId){
+
+        if (rootCatId == null){
+            return JSONResult.errorMsg("分类不存在");
+        }
+
+        List<NewItemsVo> list = categoryService.getSixNewItemsLazy(rootCatId);
 
         return JSONResult.ok(list);
     }

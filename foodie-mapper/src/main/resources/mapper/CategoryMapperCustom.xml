@@ -34,13 +34,53 @@
                 c.father_id AS subFatherId
             FROM
                 category f
-            LEFT JOIN
-                category c
-            ON
-                f.id = c.father_id
+            LEFT JOIN category c ON f.id = c.father_id
             WHERE
                 f.father_id = #{rootCatId}
       </select>
+
+    <resultMap id="sixNewItemVo" type="com.lank.pojo.vo.NewItemsVo">
+        <id column="rootCatId" property="rootCatId" />
+        <result column="rootCatName" property="rootCatName" />
+        <result column="slogan" property="slogan" />
+        <result column="catImage" property="catImage" />
+        <result column="bgColor" property="bgColor" />
+
+        <collection property="simpleItemList" ofType="com.lank.pojo.vo.SimpleItemVo">
+            <id column="itemId" property="itemId" />
+            <result column="itemName" property="itemName" />
+            <result column="itemUrl" property="itemUrl" />
+        </collection>
+
+    </resultMap>
+
+    <select id="getSixNewItemsLazy" resultMap="sixNewItemVo" parameterType="Map">
+            SELECT
+                c.id AS rootCatId,
+                c.`name` AS rootCatName,
+                c.slogan AS slogan,
+                c.cat_image AS catImage,
+                c.bg_color AS bgColor,
+                i.id AS itemId,
+                i.item_name AS itemName,
+                ii.url AS itemUrl,
+                i.created_time AS creatTime
+
+            FROM
+                category c
+            LEFT JOIN items i ON c.id = i.root_cat_id
+            LEFT JOIN items_img ii ON i.id = ii.item_id
+            WHERE
+                c.type = 1
+            AND
+                c.id = #{paramsMap.rootCatId}
+            AND
+                ii.is_main = 1
+            ORDER BY
+                i.created_time
+            DESC
+            LIMIT 0,6
+    </select>
 
 
 </mapper>
