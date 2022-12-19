@@ -12,6 +12,8 @@
     <artifactId>foodie-mapper</artifactId>
 
     <dependencies>
+        <!--  mapper -> pojo -> common，mapper通过pojo可以使用common中的方法      -->
+        <!--  mapper可以引用其他的依赖      -->
         <dependency>
             <groupId>com.imooc</groupId>
             <artifactId>foodie-pojo</artifactId>

@@ -9,6 +9,12 @@ import tk.mybatis.spring.annotation.MapperScan;
 /*
 * springboot的启动类
 *
+* @SpringBootApplication由@SpringBootConfiguration、@EnableAutoConfiguration、@ComponentScan组成
+* @ComponentScan默认扫描Application.class所在包下的所有类及其子类
+* @SpringBootConfiguration是一个接口，由@Configuration组成，是一个配置文件的容器
+* @EnableAutoConfiguration用于开启自动装备。
+* AutoConfigurationImportSelector.class中配置自动装配的相关代码，spring.factories中配置了自动装配的内容
+*
 * */
 @SpringBootApplication
 //扫描mybatis通用mapper所在的包

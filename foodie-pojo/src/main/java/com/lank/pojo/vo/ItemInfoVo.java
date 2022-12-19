@@ -12,6 +12,7 @@ public class ItemInfoVo {
     private Items item;
     private List<ItemsImg> itemImgList;
     private List<ItemsSpec> itemSpecList;
+    private ItemsParam itemParams;
 
     public Items getItem() {
         return item;
@@ -45,5 +46,4 @@ public class ItemInfoVo {
         this.itemParams = itemParams;
     }
 
-    private ItemsParam itemParams;
 }

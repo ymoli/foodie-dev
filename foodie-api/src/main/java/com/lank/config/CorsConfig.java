@@ -36,4 +36,5 @@ public class CorsConfig {
         //3.返回重新定义好的urlSource
         return new CorsFilter(urlSource);
     }
+
 }
