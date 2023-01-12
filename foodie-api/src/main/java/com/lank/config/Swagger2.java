@@ -23,9 +23,9 @@ public class Swagger2 {
     @Bean
     public Docket docket(){
         return new Docket(DocumentationType.SWAGGER_2) //指定api类型为swagger2
-                .apiInfo(apiInfo()) //定义api汇总信息
+                .apiInfo(apiInfo()) //用于定义api文档汇总信息
                 .select().apis(RequestHandlerSelectors.basePackage("com.lank.controller")) //指定controller
-                .paths(PathSelectors.any())  //所有配置
+                .paths(PathSelectors.any())  //所有controller
                 .build();
     }
 
@@ -36,7 +36,7 @@ public class Swagger2 {
                 .description("天天吃货api文档") //描述
                 .version("1.0")//版本号
                 .termsOfServiceUrl("")//网站地址
-                .build();
+                .build();  // 构建ApiInfoBuilder对象
     }
 
 }

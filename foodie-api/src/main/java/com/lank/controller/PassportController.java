@@ -24,6 +24,7 @@ public class PassportController {
     @Autowired
     private UserService userService;
 
+    // @RequestParam 代表是请求类型的参数，而不是路径类型的参数
     @GetMapping("/usernameIsExist")
     @ApiOperation(value = "用户是否存在",notes = "用户是否存在",httpMethod = "GET")
     public JSONResult usernameIsExist(@RequestParam String username){
@@ -119,7 +120,7 @@ public class PassportController {
     @ApiOperation(value = "用户退出",notes = "用户退出",httpMethod = "POST")
     public JSONResult logout(@RequestParam String userId,HttpServletRequest request, HttpServletResponse response){
 
-        //退出登录，清楚用户cookie信息
+        //退出登录，清除用户cookie信息
         CookieUtils.deleteCookie(request,response,"user");
 
         //用户退出登录，清空购物车

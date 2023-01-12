@@ -31,9 +31,12 @@ public class UserServiceImpl implements UserService {
     @Transactional(propagation = Propagation.SUPPORTS)
     public boolean queryUserNameIsExist(String username) {
         Example userExample = new Example(Users.class);
+        // 设置判断
         Example.Criteria userCriteris = userExample.createCriteria();
+        // 判断的条件是相等，property是数据库判断的列映射到User类中对应的属性名，value是判断的值
         userCriteris.andEqualTo("username",username);
 
+        // usersMapper.selectOneByExample是mybatis逆向工具自动生成的mapper本身包含的方法
         Users result = usersMapper.selectOneByExample(userExample);
         return result == null ? false : true;
     }
@@ -54,9 +57,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public Users creatUser(UserBo userBo) {
-        String userId = sid.nextShort();
         Users user = new Users();
-        user.setId(userId);
+        user.setId(sid.nextShort());
         user.setUsername(userBo.getUsername());
         try {
             user.setPassword(MD5Utils.getMD5Str(userBo.getPassword()));

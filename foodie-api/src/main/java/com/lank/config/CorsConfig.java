@@ -29,7 +29,7 @@ public class CorsConfig {
         //设置允许的Header
         configuration.addAllowedHeader("*");
 
-        //2.为url添加映射路径
+        //2.为url添加映射路径，第一步的配置适用于所有的路由
         UrlBasedCorsConfigurationSource urlSource = new UrlBasedCorsConfigurationSource();
         urlSource.registerCorsConfiguration("/**",configuration);
 

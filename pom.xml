@@ -48,6 +48,7 @@
             <artifactId>spring-boot-starter</artifactId>
             <exclusions>
                 <exclusion> <!--排除某个jar包-->
+                    <!-- 因为springBoot原生依赖中包含log4j框架，但是也包含其他框架，怕本身包含的log4j与重新引入的冲突，所以排除 -->
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
@@ -65,7 +66,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!--  引入apo的包，实现通过日志监控service      -->
+        <!--  引入apo的包，实现通过日志监控service，Aspect需要该包      -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>

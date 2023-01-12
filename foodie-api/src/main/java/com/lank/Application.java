@@ -21,6 +21,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @MapperScan(basePackages = "com.lank.mapper")
 //org.n3r.idworker包保证数据库主键全程唯一，方便后期分库分表
 @ComponentScan(basePackages = {"com.lank","org.n3r.idworker"})
+//开启事务管理的接口，在@SpringBootApplication注解中已经自动装配了，
 @EnableTransactionManagement
 public class Application {
 

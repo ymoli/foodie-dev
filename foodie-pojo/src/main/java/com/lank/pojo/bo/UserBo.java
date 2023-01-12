@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 //业务层封装的数据
-@ApiModel(value = "用户对象BO", description = "从客户端，由用户传入的数据，封装子此entity")
+@ApiModel(value = "用户对象BO", description = "从客户端，由用户传入的数据，封装成此entity")
 public class UserBo {
     @ApiModelProperty(value = "用户名",name = "username",example = "lank",required = true)
     private String username;

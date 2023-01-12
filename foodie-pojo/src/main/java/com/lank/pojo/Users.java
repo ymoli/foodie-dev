@@ -1,8 +1,7 @@
 package com.lank.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
 import java.util.Date;
 
 public class Users {
@@ -20,7 +19,7 @@ public class Users {
     /**
      * 密码 密码
      */
-    //把实体类封装为json object返回给前端后，在前端不显示，但是对于数据库的原始类不建议修改
+    //@JsonIgnore 把实体类封装为json object返回给前端后，在前端不显示，但是对于数据库的原始类不建议修改
     //@JsonIgnore
     private String password;
 
