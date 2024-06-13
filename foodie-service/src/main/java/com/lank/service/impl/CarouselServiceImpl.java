@@ -20,14 +20,14 @@ public class CarouselServiceImpl implements CarouselService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<Carousel> queryAll(Integer isShow) {
-        //使用mybatis的mapper默认的example查询
+        //使用mybatis的mapper默认的example查询，该方法属于mybatis逆向生成类中的方法
         Example carouselExample = new Example(Carousel.class);
         //设置查询的排序，默认是asc，可以不写
         carouselExample.orderBy("sort").asc();
         Example.Criteria carouselCriteris = carouselExample.createCriteria();
         //设置查询条件
         carouselCriteris.andEqualTo("isShow",isShow);
-
+        //查询
         List<Carousel> result = carouselMapper.selectByExample(carouselExample);
 
         return result;

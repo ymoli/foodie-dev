@@ -31,7 +31,8 @@ public class CategoryServiceImpl implements CategoryService {
         Example categoryExample = new Example(Category.class);
         categoryExample.orderBy("id");
         Example.Criteria categoryCriterias = categoryExample.createCriteria();
-        categoryCriterias.andEqualTo("fatherId",0);
+//        categoryCriterias.andEqualTo("fatherId",0);
+        categoryCriterias.andEqualTo("type",1);
         List<Category> result= categoryMapper.selectByExample(categoryExample);
         return result;
     }

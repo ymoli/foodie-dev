@@ -139,6 +139,12 @@
             <version>1.7.21</version>
         </dependency>
 
+        <!--引入gson,将java的pojo转换为json字符串-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
     </dependencies>
 
 

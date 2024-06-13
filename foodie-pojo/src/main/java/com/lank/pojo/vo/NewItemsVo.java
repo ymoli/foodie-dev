@@ -2,7 +2,7 @@ package com.lank.pojo.vo;
 
 import java.util.List;
 
-//最新商品VO
+//首页最新商品VO
 public class NewItemsVo {
     private Integer rootCatId;
     private String rootCatName;

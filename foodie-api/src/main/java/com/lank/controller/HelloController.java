@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
-@ApiIgnore
+@ApiIgnore  // swagger文档中不展示该接口
 public class HelloController {
 
     final static Logger logger = LoggerFactory.getLogger(HelloController.class);
