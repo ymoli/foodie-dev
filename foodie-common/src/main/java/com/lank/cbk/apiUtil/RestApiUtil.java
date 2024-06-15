@@ -56,6 +56,7 @@ public class RestApiUtil {
             logger.error(e.getMessage());
             return "";
         }
+        return "";
     }
     private String buildUrl(String url,int port,String uri){
         return new StringBuffer()
