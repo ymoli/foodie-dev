@@ -7,6 +7,7 @@ import com.lank.mapper.*;
 import com.lank.pojo.*;
 import com.lank.pojo.vo.CommentLevelCountVo;
 import com.lank.pojo.vo.ItemCommentVo;
+import com.lank.pojo.vo.SearchItemsVo;
 import com.lank.service.ItemService;
 import com.lank.utils.DesensitizationUtil;
 import com.lank.utils.PagedGridResult;
@@ -122,6 +123,32 @@ public class ItemServiceImpl implements ItemService {
             item.setNickname(DesensitizationUtil.commonDisplay(item.getNickname()));
         });
 
+        return setterPagedGrid(list,page);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public PagedGridResult searchItems(String keywords, String sort, Integer page, Integer pageSize) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("keywords",keywords);
+        map.put("sort",sort);
+        //mybatis-pagehelper
+        PageHelper.startPage(page, pageSize);
+
+        List<SearchItemsVo> list = itemsMapperCustom.searchItems(map);
+        return setterPagedGrid(list,page);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public PagedGridResult searchItems(int catId, String sort, Integer page, Integer pageSize) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("catId",catId);
+        map.put("sort",sort);
+        //mybatis-pagehelper
+        PageHelper.startPage(page, pageSize);
+
+        List<SearchItemsVo> list = itemsMapperCustom.searchItems(map);
         return setterPagedGrid(list,page);
     }
 

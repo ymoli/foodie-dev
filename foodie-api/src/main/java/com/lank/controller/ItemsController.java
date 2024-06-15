@@ -83,4 +83,53 @@ public class ItemsController extends BaseController{
         return JSONResult.ok(grid);
     }
 
+    //keywords根据关键字搜索查询
+    @ApiOperation(value = "搜索商品列表",notes = "搜索商品列表",httpMethod = "GET")
+    @GetMapping("/search")
+    public JSONResult search(
+            @ApiParam(name = "keywords",value = "关键字",required = true)
+            @RequestParam String keywords,
+            @ApiParam(name = "sort",value = "排序",required = false)
+            @RequestParam String sort,
+            @ApiParam(name = "page",value = "查询下一页的第几页",required = false)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize",value = "查询每一页的内容",required = false)
+            @RequestParam Integer pageSize){
+        if (StringUtils.isBlank(keywords)){
+            return JSONResult.errorMsg(null);
+        }
+        if(page == null){
+            page = 1;
+        }
+        if(pageSize == null){
+            pageSize = PAGE_SIZE;
+        }
+        PagedGridResult grid = itemService.searchItems(keywords,sort,page,pageSize);
+        return JSONResult.ok(grid);
+    }
+
+    //catId根据目录等级搜索查询
+    @ApiOperation(value = "通过分类id搜索商品列表",notes = "通过分类id搜索商品列表",httpMethod = "GET")
+    @GetMapping("/catItems")
+    public JSONResult catItems(
+            @ApiParam(name = "catId",value = "三级分类id",required = true)
+            @RequestParam Integer catId,
+            @ApiParam(name = "sort",value = "排序",required = false)
+            @RequestParam String sort,
+            @ApiParam(name = "page",value = "查询下一页的第几页",required = false)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize",value = "查询每一页的内容",required = false)
+            @RequestParam Integer pageSize){
+        if (catId == null){
+            return JSONResult.errorMsg(null);
+        }
+        if(page == null){
+            page = 1;
+        }
+        if(pageSize == null){
+            pageSize = PAGE_SIZE;
+        }
+        PagedGridResult grid = itemService.searchItems(catId,sort,page,pageSize);
+        return JSONResult.ok(grid);
+    }
 }
