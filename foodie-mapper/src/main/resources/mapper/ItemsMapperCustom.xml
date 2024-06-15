@@ -68,4 +68,17 @@
             </choose>
     </select>
 
+    <select id="queryItemsBySpecIds"  parameterType="List" resultType="com.lank.pojo.vo.ShopcatVo">
+        SELECT  i.id AS itemId, i.item_name AS itemName, ig.url AS itemImgUrl, ic.id AS specId, ic.`name` AS specName,
+                ic.price_discount AS priceDiscount, ic.price_normal AS priceNormal
+        FROM items_spec ic
+        LEFT JOIN items i ON i.id = ic.item_id
+        LEFT JOIN items_img ig ON i.id = ig.item_id
+        WHERE ig.is_main = 1
+        AND ic.id IN
+        <foreach collection="paramsList" index="index" item="specId" open="(" close=")" separator=",">
+            #{specId}
+        </foreach>
+    </select>
+
 </mapper>

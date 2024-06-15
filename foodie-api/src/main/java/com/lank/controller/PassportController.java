@@ -76,7 +76,8 @@ public class PassportController {
 
         //将用户的信息保存在cookie中，传到前端
         CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(userResult),true);
-
+        //TODO 生成用户token，存入会话
+        //TODO 同步购物车数据
         return JSONResult.ok(userResult);
     }
 
@@ -102,6 +103,8 @@ public class PassportController {
         //将用户的信息保存在cookie中，传到前端
         CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(userResult),true);
 
+        //TODO 生成用户token，存入会话
+        //TODO 同步购物车数据
         return JSONResult.ok(userResult);
     }
 
@@ -123,8 +126,8 @@ public class PassportController {
         //退出登录，清除用户cookie信息
         CookieUtils.deleteCookie(request,response,"user");
 
-        //用户退出登录，清空购物车
-        //分布式会话中清除用户数据
+        //TODO 用户退出登录，清空购物车
+        //TODO 分布式会话中清除用户数据
 
         return JSONResult.ok();
     }

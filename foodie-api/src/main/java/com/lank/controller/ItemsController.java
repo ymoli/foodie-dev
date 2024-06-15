@@ -6,6 +6,7 @@ import com.lank.pojo.ItemsParam;
 import com.lank.pojo.ItemsSpec;
 import com.lank.pojo.vo.CommentLevelCountVo;
 import com.lank.pojo.vo.ItemInfoVo;
+import com.lank.pojo.vo.ShopcatVo;
 import com.lank.service.ItemService;
 import com.lank.utils.JSONResult;
 import com.lank.utils.PagedGridResult;
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Api(value = "商品" , tags = {"用于商品的相关接口"})
 @RestController
-@RequestMapping("/items")
+@RequestMapping("items")
 public class ItemsController extends BaseController{
 
     @Autowired
@@ -131,5 +132,19 @@ public class ItemsController extends BaseController{
         }
         PagedGridResult grid = itemService.searchItems(catId,sort,page,pageSize);
         return JSONResult.ok(grid);
+    }
+
+    //用于用户长时间未登录网站，刷新购物车中的数据（主要是商品的价格）
+    @ApiOperation(value = "根据商品规格ids查找最新的商品数据",notes = "根据商品规格ids查找最新的商品数据",httpMethod = "GET")
+    @GetMapping("/refresh")
+    public JSONResult refresh(
+            @ApiParam(name = "itemSpecIds",value = "拼接的规格ids",required = true,example = "1001,1003,1005")
+            @RequestParam String itemSpecIds){
+        if (StringUtils.isBlank(itemSpecIds)){
+            return JSONResult.ok();
+        }
+
+        List<ShopcatVo> list = itemService.queryItemsBySpecIds(itemSpecIds);
+        return JSONResult.ok(list);
     }
 }
