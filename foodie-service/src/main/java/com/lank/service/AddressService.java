@@ -17,4 +17,6 @@ public interface AddressService {
     public void deleteUserAddress(String userId,String addressId);
     //修改默认地址
     public void updateUserAddressToBeDefault(String userId,String addressId);
+    //根据用户id和地址id查询具体的地址信息
+    public UserAddress queryUserAddress(String userId,String addressId);
 }

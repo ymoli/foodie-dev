@@ -3,6 +3,7 @@ package com.lank.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lank.enums.CommentLevel;
+import com.lank.enums.YesOrNo;
 import com.lank.mapper.*;
 import com.lank.pojo.*;
 import com.lank.pojo.vo.CommentLevelCountVo;
@@ -158,6 +159,39 @@ public class ItemServiceImpl implements ItemService {
         List<String> specIdsList = new ArrayList<>();
         Collections.addAll(specIdsList,ids);
         return itemsMapperCustom.queryItemsBySpecIds(specIdsList);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public ItemsSpec queryItemSpecById(String specId) {
+        return itemsSpecMapper.selectByPrimaryKey(specId);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public String queryItemMainImgById(String itemId) {
+        ItemsImg itemsImg = new ItemsImg();
+        itemsImg.setItemId(itemId);
+        itemsImg.setIsMain(YesOrNo.Yes.type);
+        ItemsImg result = itemsImgMapper.selectOne(itemsImg);
+        return result != null ? result.getUrl() : "";
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void decreaseItemSpecStock(String specId,Integer buyCounts) {
+        /*当有多个订单，同时扣除库存时，可能会出现负数，解决办法：
+           （1）synchronized,存在问题：效率较低；集群项目的化，关键字没作用
+           （2）锁数据库，存在问题：导致数据库性能低下
+           （3）分布式锁：zookeeper redis
+              lockUtil.getLock() //加锁
+              lockUtil.unLock //解锁
+           （4）单体项目：乐观锁
+         */
+        int result = itemsMapperCustom.decreaseItemSpecStock(specId,buyCounts);
+        if (result != 1){
+            throw new RuntimeException("订单创建失败，由于库存不足不足");
+        }
     }
 
     private PagedGridResult setterPagedGrid(List<?> list, Integer page){
