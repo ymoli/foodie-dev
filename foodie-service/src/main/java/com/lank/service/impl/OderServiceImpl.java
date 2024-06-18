@@ -79,7 +79,7 @@ public class OderServiceImpl implements OrderService {
             totalAmount += itemsSpec.getPriceNormal() * buyCounts;
             realAmount += itemsSpec.getPriceDiscount() * buyCounts;
             //根据规格id，获得商品信息及商品图片
-            String itemID = itemsSpec.getId();
+            String itemID = itemsSpec.getItemId();
             Items item = itemService.queryItemById(itemID);
             String url = itemService.queryItemMainImgById(itemID);
             //循环保存子订单数据到数据库
