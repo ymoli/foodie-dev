@@ -10,4 +10,10 @@ public class RestTemplateConfig {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
+    //在天天商城中这么写
+//    @Bean
+//    public RestTemplate restTemplateWeb(RestTemplateBuilder builder) {
+//        return builder.build();
+//    }
 }
