@@ -55,7 +55,7 @@ public class OrdersController extends BaseController {
         4004
         后端将2002，3003从redis购物车中清除，返回给前端，清除相关cookies
          */
-        //TODO 2.整合redis后，完善购物车中的已结算商品清除，
+        //TODO 2.整合redis后，完善购物车中的已结算商品清除，删除cookie中的购物车
         CookieUtils.setCookie(request,response,FOODIE_SHOPCAT,"",true);
         //3.向支付中心发送当前订单，用于保存支付中的订单数据
         MerchantOrdersVo merchantOrdersVo = orderVo.getMerchantOrdersVo();

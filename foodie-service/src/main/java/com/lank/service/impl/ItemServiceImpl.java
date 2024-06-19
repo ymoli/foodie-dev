@@ -181,13 +181,14 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(propagation = Propagation.REQUIRED)
     public void decreaseItemSpecStock(String specId,Integer buyCounts) {
         /*当有多个订单，同时扣除库存时，可能会出现负数，解决办法：
-           （1）synchronized,存在问题：效率较低；集群项目的化，关键字没作用
+           （1）synchronized,存在问题：效率较低；集群项目的话，关键字没作用
            （2）锁数据库，存在问题：导致数据库性能低下
            （3）分布式锁：zookeeper redis
               lockUtil.getLock() //加锁
               lockUtil.unLock //解锁
            （4）单体项目：乐观锁
          */
+        //使用乐观锁实现
         int result = itemsMapperCustom.decreaseItemSpecStock(specId,buyCounts);
         if (result != 1){
             throw new RuntimeException("订单创建失败，由于库存不足不足");
