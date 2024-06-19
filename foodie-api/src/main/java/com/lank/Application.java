@@ -3,6 +3,7 @@ package com.lank;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tk.mybatis.spring.annotation.MapperScan;
 
@@ -23,6 +24,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 @ComponentScan(basePackages = {"com.lank","org.n3r.idworker"})
 //开启事务管理的接口，在@SpringBootApplication注解中已经自动装配了，
 @EnableTransactionManagement
+//开启定时任务
+@EnableScheduling
 public class Application {
 
     public static void main(String[] args) {
