@@ -13,4 +13,10 @@ public class BaseController {
     String payReturnUrl = "http://localhost:8088/orders/notifyMerchantOrderPaid";
     //支付中心的调用地址
     String paymentUrl = "http://payment.t.mukewang.com/foodie-payment/payment/createMerchantOrder";
+    //用户上传头像的位置,使用File.separator代替/，在不同环境分割符不同
+//    public static final String IMAGE_USER_FACE_LOCATION = File.separator + "workspace" +
+//                                                            File.separator + "images" +
+//                                                            File.separator + "foodie" +
+//                                                            File.separator + "face";
+
 }

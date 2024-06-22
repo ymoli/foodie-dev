@@ -39,4 +39,18 @@ public class CenterUserServiceImpl implements CenterUserService {
         users.setPassword("");
         return newUsers;
     }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Users updateUserFace(String userId, String userUrl) {
+        Users users = new Users();
+        users.setId(userId);
+        users.setFace(userUrl);
+        users.setUpdatedTime(new Date());
+        usersMapper.updateByPrimaryKeySelective(users);
+
+        Users newUsers = usersMapper.selectByPrimaryKey(userId);
+        users.setPassword("");
+        return newUsers;
+    }
 }
