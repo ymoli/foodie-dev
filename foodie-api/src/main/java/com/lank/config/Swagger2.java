@@ -24,7 +24,8 @@ public class Swagger2 {
     public Docket docket(){
         return new Docket(DocumentationType.SWAGGER_2) //指定api类型为swagger2
                 .apiInfo(apiInfo()) //用于定义api文档汇总信息
-                .select().apis(RequestHandlerSelectors.basePackage("com.lank.controller")) //指定controller
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.lank.controller")) //指定controller
                 .paths(PathSelectors.any())  //所有controller
                 .build();
     }

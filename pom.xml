@@ -86,6 +86,14 @@
             <version>2.1.0</version>
         </dependency>
 
+        <!--lombok简化代码@Data注解-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- 通用mapper逆向工具 -->
         <dependency>
             <groupId>tk.mybatis</groupId>
