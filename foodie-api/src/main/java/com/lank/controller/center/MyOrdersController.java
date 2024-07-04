@@ -1,7 +1,6 @@
 package com.lank.controller.center;
 
 import com.lank.controller.BaseController;
-import com.lank.pojo.Orders;
 import com.lank.service.center.MyOrdersService;
 import com.lank.utils.JSONResult;
 import com.lank.utils.PagedGridResult;
@@ -96,12 +95,5 @@ public class MyOrdersController extends BaseController {
         return JSONResult.ok();
     }
 
-    //用于验证订单和用户是否有关联，避免非法调用
-    private JSONResult checkUserOrder(String orderId,String userId){
-        Orders orders = myOrdersService.queryMyOrder(userId,orderId);
-        if (orders == null){
-            return JSONResult.errorMsg("订单不存在");
-        }
-        return JSONResult.ok();
-    }
+
 }

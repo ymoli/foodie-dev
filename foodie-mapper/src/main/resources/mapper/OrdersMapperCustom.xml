@@ -9,6 +9,7 @@
             <result column="realPayAmount" property="realPayAmount" />
             <result column="postAmount" property="postAmount" />
             <result column="orderStatus" property="orderStatus" />
+            <result column="isComment" property="isComment" />
 
             <!--
               collection标签：用于定义关联的list集合的封装规则
@@ -30,7 +31,7 @@
       </resultMap>
 
       <select id="queryMyOrders" parameterType="Map" resultMap="myOrdersVo">
-            SELECT od.id as orderId, od.created_time as createdTime, od.pay_method as payMethod,od.real_pay_amount as realPayAmount,od.post_amount as postAmount,os.order_status as orderStatus
+            SELECT od.id as orderId, od.created_time as createdTime, od.pay_method as payMethod,od.real_pay_amount as realPayAmount,od.post_amount as postAmount,os.order_status as orderStatus,od.is_comment as isComment
             FROM orders od
             LEFT JOIN order_status os on od.id = os.order_id
             WHERE od.user_id = #{paramsMap.userId}
