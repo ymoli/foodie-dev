@@ -1,13 +1,14 @@
 package com.lank.service.center;
 
 import com.lank.pojo.Orders;
+import com.lank.pojo.vo.center.OrderStatusCountsVO;
 import com.lank.utils.PagedGridResult;
 
 public interface MyOrdersService {
-//    OrderStatusCountsVO getOrderStatusCounts(String userId);
-
-//    PagedGridResult getOrdersTrend(String userId, Integer page, Integer pageSize);
-
+    //个人中心 - 查询用户订单数
+    OrderStatusCountsVO getOrderStatusCounts(String userId);
+    //个人中心 - 查询订单去向
+    PagedGridResult getOrdersTrend(String userId, Integer page, Integer pageSize);
     //查询我的订单列表
     PagedGridResult queryMyOrders(String userId, Integer orderStatus, Integer page, Integer pageSize);
     //订单状态 -> 商家发货

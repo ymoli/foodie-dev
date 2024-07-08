@@ -1,7 +1,7 @@
 package com.lank.pojo.vo;
 
 //6个最新商品的简单数据类型
-public class SimpleItemVo {
+public class SimpleItemVO {
     private String itemId;
     private String itemName;
     private String itemUrl;

@@ -8,7 +8,7 @@ import com.lank.pojo.ItemsSpec;
 import java.util.List;
 
 //商品详情VO
-public class ItemInfoVo {
+public class ItemInfoVO {
     private Items item;
     private List<ItemsImg> itemImgList;
     private List<ItemsSpec> itemSpecList;

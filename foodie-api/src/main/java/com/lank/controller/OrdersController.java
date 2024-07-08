@@ -3,9 +3,9 @@ package com.lank.controller;
 import com.lank.enums.OrderStatusEnum;
 import com.lank.enums.PayMethod;
 import com.lank.pojo.OrderStatus;
-import com.lank.pojo.bo.SubmitOrderBo;
-import com.lank.pojo.vo.MerchantOrdersVo;
-import com.lank.pojo.vo.OrderVo;
+import com.lank.pojo.bo.SubmitOrderBO;
+import com.lank.pojo.vo.MerchantOrdersVO;
+import com.lank.pojo.vo.OrderVO;
 import com.lank.service.OrderService;
 import com.lank.utils.CookieUtils;
 import com.lank.utils.JSONResult;
@@ -40,12 +40,12 @@ public class OrdersController extends BaseController {
 
     @ApiOperation(value = "用户下单",notes = "用户下单",httpMethod = "POST")
     @PostMapping("/create")
-    public JSONResult create(@RequestBody SubmitOrderBo submitOrderBo, HttpServletRequest request, HttpServletResponse response){
+    public JSONResult create(@RequestBody SubmitOrderBO submitOrderBo, HttpServletRequest request, HttpServletResponse response){
         if (submitOrderBo.getPayMethod() != PayMethod.WEIXIN.type && submitOrderBo.getPayMethod() != PayMethod.ALIPAY.type ){
             return JSONResult.errorMsg("支付方式不支持");
         }
         //1.创建订单
-        OrderVo orderVo = orderService.createOrder(submitOrderBo);
+        OrderVO orderVo = orderService.createOrder(submitOrderBo);
         String orderId = orderVo.getOrderId();
         //创建订单后，移除购物车中已结算（已提交）的商品
         /*
@@ -58,7 +58,7 @@ public class OrdersController extends BaseController {
         //TODO 2.整合redis后，完善购物车中的已结算商品清除，删除cookie中的购物车
         CookieUtils.setCookie(request,response,FOODIE_SHOPCAT,"",true);
         //3.向支付中心发送当前订单，用于保存支付中的订单数据
-        MerchantOrdersVo merchantOrdersVo = orderVo.getMerchantOrdersVo();
+        MerchantOrdersVO merchantOrdersVo = orderVo.getMerchantOrdersVo();
         merchantOrdersVo.setReturnUrl(payReturnUrl);
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -66,7 +66,7 @@ public class OrdersController extends BaseController {
         httpHeaders.add("imoocUserId","10010");
         httpHeaders.add("password","123456");
 
-        HttpEntity<MerchantOrdersVo> entity = new HttpEntity<>(merchantOrdersVo,httpHeaders);
+        HttpEntity<MerchantOrdersVO> entity = new HttpEntity<>(merchantOrdersVo,httpHeaders);
 
         ResponseEntity<JSONResult> responseEntity = restTemplate.postForEntity(paymentUrl,entity,JSONResult.class);
         JSONResult paymentResult = responseEntity.getBody();

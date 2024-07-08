@@ -1,6 +1,6 @@
 package com.lank.controller;
 
-import com.lank.pojo.bo.ShopcatBo;
+import com.lank.pojo.bo.ShopcatBO;
 import com.lank.utils.JSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,7 +21,7 @@ public class ShopcatController {
 
     @PostMapping("/add")
     @ApiOperation(value = "添加商品到购物车",notes = "添加商品到购物车",httpMethod = "POST")
-    public JSONResult add(@RequestParam String userId, @RequestBody ShopcatBo shopcatBo,
+    public JSONResult add(@RequestParam String userId, @RequestBody ShopcatBO shopcatBo,
                           HttpServletRequest request, HttpServletResponse response){
         if (StringUtils.isBlank(userId)){
             return JSONResult.errorMsg("");

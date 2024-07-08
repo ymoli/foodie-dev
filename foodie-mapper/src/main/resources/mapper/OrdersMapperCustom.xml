@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lank.mapper.OrdersMapperCustom">
-      <resultMap id="myOrdersVo" type="com.lank.pojo.vo.MyOrdersVo">
+      <resultMap id="myOrdersVo" type="com.lank.pojo.vo.center.MyOrdersVO">
             <id column="orderId" property="orderId" />
             <result column="createdTime" property="createdTime" />
             <result column="payMethod" property="payMethod" />
@@ -18,7 +18,7 @@
                   select: list对应的查询语句
                   column： 传递到list的查询条件
             -->
-            <collection property="subOrderItemList" select="getSubItems" column="orderId" ofType="com.lank.pojo.vo.MySubOrderItemVO">
+            <collection property="subOrderItemList" select="getSubItems" column="orderId" ofType="com.lank.pojo.vo.center.MySubOrderItemVO">
                 <result column="itemId" property="itemId" />
                 <result column="itemName" property="itemName" />
                 <result column="itemImg" property="itemImg" />
@@ -42,7 +42,7 @@
             ORDER BY od.updated_time ASC
       </select>
 
-    <select id="getSubItems" parameterType="String" resultType="com.lank.pojo.vo.MySubOrderItemVO">
+    <select id="getSubItems" parameterType="String" resultType="com.lank.pojo.vo.center.MySubOrderItemVO">
         select oi.id as itemId, oi.item_name as itemName, oi.item_img as itemImg,
         oi.item_spec_id as itemSpecId,oi.item_spec_name as itemSpecName,oi.buy_counts as buyCounts,oi.price as price
         from order_items oi
@@ -64,7 +64,29 @@
         ORDER BY od.updated_time ASC
     </select>
 
+    <select id="getMyOrderStatusCounts" parameterType="Map" resultType="int">
+        select count(1)
+        from orders o
+        left join order_status os on o.id = os.order_id
+        where o.user_id = #{paramsMap.userId}
+        and o.is_delete = 0
+        and os.order_status = ${paramsMap.orderStatus}
+        <if test="paramsMap.isComment != null">
+         and o.is_comment = #{paramsMap.isComment}
+        </if>
+    </select>
 
+    <select id="getMyOrderTrend" parameterType="Map" resultType="com.lank.pojo.OrderStatus">
+        select os.order_id as orderId, os.order_status as orderStatus, os.created_time as createdTime,
+                os.pay_time as payTime, os.deliver_time as deliverTime, os.success_time as successTime,
+                os.close_time as closeTime, os.comment_time as commentTime
+        FROM orders o
+        LEFT JOIN order_status os on o.id = os.order_id
+        WHERE o.is_delete = 0
+        AND o.user_id = #{paramsMap.userId}
+        AND os.order_status in (20, 30, 40)
+        ORDER BY os.order_id DESC
+    </select>
 
 
 </mapper>

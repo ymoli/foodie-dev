@@ -4,12 +4,12 @@ import java.util.List;
 
 //数据层取出,用于展示的数据 view object，后端数据传到前端的entity
 //二级分类VO
-public class CategoryVo {
+public class CategoryVO {
     private Integer id;
     private String name;
     private String type;
     private Integer fatherId;
-    private List<SubCategoryVo> subCatList;
+    private List<SubCategoryVO> subCatList;
 
     public Integer getId() {
         return id;
@@ -43,11 +43,11 @@ public class CategoryVo {
         this.fatherId = fatherId;
     }
 
-    public List<SubCategoryVo> getSubCatList() {
+    public List<SubCategoryVO> getSubCatList() {
         return subCatList;
     }
 
-    public void setSubCatList(List<SubCategoryVo> subCatList) {
+    public void setSubCatList(List<SubCategoryVO> subCatList) {
         this.subCatList = subCatList;
     }
 }

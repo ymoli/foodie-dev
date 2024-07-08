@@ -1,7 +1,7 @@
 package com.lank.controller;
 
 import com.lank.pojo.UserAddress;
-import com.lank.pojo.bo.AddressBo;
+import com.lank.pojo.bo.AddressBO;
 import com.lank.service.AddressService;
 import com.lank.utils.JSONResult;
 import com.lank.utils.MobileEmailUtils;
@@ -47,7 +47,7 @@ public class AddressController {
 
     @ApiOperation(value = "用户新增地址",notes = "用户新增地址",httpMethod = "POST")
     @PostMapping("/add")
-    public JSONResult add(@RequestBody AddressBo addressBo){
+    public JSONResult add(@RequestBody AddressBO addressBo){
         JSONResult checkRes = checkAddress(addressBo);
         if (checkRes.getStatus() != 200){
             return checkRes;
@@ -58,7 +58,7 @@ public class AddressController {
 
     @ApiOperation(value = "用户修改地址",notes = "用户修改地址",httpMethod = "POST")
     @PostMapping("/update")
-    public JSONResult update(@RequestBody AddressBo addressBo){
+    public JSONResult update(@RequestBody AddressBO addressBo){
         if (StringUtils.isBlank(addressBo.getAddressId())){
             return JSONResult.errorMsg("修改地址错误：addressId不能为空");
         }
@@ -70,7 +70,7 @@ public class AddressController {
         return JSONResult.ok();
     }
 
-    private JSONResult checkAddress(AddressBo addressBO) {
+    private JSONResult checkAddress(AddressBO addressBO) {
         String receiver = addressBO.getReceiver();
         if (StringUtils.isBlank(receiver)) {
             return JSONResult.errorMsg("收货人不能为空");

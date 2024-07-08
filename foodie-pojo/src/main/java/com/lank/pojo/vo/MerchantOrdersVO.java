@@ -1,6 +1,6 @@
 package com.lank.pojo.vo;
 
-public class MerchantOrdersVo {
+public class MerchantOrdersVO {
     private String merchantOrderId;
     private String merchantUserId;
     private Integer amount;

@@ -1,4 +1,4 @@
-package com.lank.pojo.vo;
+package com.lank.pojo.vo.center;
 
 import lombok.Data;
 

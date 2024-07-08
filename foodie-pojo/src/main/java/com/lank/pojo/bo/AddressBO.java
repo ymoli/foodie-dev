@@ -1,7 +1,7 @@
 package com.lank.pojo.bo;
 
 //用于新增或修改地址的Bo
-public class AddressBo {
+public class AddressBO {
     private String addressId;
     private String userId;
     private String receiver;

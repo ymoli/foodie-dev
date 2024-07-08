@@ -1,8 +1,8 @@
 package com.lank.pojo.vo;
 
-public class OrderVo {
+public class OrderVO {
     private String orderId;
-    private MerchantOrdersVo merchantOrdersVo;
+    private MerchantOrdersVO merchantOrdersVo;
 
     public String getOrderId() {
         return orderId;
@@ -12,11 +12,11 @@ public class OrderVo {
         this.orderId = orderId;
     }
 
-    public MerchantOrdersVo getMerchantOrdersVo() {
+    public MerchantOrdersVO getMerchantOrdersVo() {
         return merchantOrdersVo;
     }
 
-    public void setMerchantOrdersVo(MerchantOrdersVo merchantOrdersVo) {
+    public void setMerchantOrdersVo(MerchantOrdersVO merchantOrdersVo) {
         this.merchantOrdersVo = merchantOrdersVo;
     }
 }

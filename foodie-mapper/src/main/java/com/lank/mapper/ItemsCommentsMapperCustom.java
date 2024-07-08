@@ -1,6 +1,6 @@
 package com.lank.mapper;
 
-import com.lank.pojo.vo.MyCommentVO;
+import com.lank.pojo.vo.center.MyCommentVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

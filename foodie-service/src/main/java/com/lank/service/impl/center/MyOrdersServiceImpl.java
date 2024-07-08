@@ -2,6 +2,7 @@ package com.lank.service.impl.center;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lank.constants.Constants;
 import com.lank.enums.OrderStatusEnum;
 import com.lank.enums.YesOrNo;
 import com.lank.mapper.OrderItemsMapper;
@@ -10,7 +11,8 @@ import com.lank.mapper.OrdersMapper;
 import com.lank.mapper.OrdersMapperCustom;
 import com.lank.pojo.OrderStatus;
 import com.lank.pojo.Orders;
-import com.lank.pojo.vo.MyOrdersVo;
+import com.lank.pojo.vo.center.MyOrdersVO;
+import com.lank.pojo.vo.center.OrderStatusCountsVO;
 import com.lank.service.center.MyOrdersService;
 import com.lank.utils.PagedGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,45 +37,48 @@ public class MyOrdersServiceImpl implements MyOrdersService {
     @Autowired
     private OrderStatusMapper orderStatusMapper;
 
-//    @Override
-//    public OrderStatusCountsVO getOrderStatusCounts(String userId) {
-//        Map<String,Object> map = new HashMap<>();
-//        map.put("userId",userId);
-//
-//        //待付款
-//        map.put("orderStatus", Constants.OrderStatusEnum.NO_PAY.getCode());
-//        int waitPayCounts = ordersMapperCustom.getMyOrderStatusCounts(map);
-//
-//        //已付款、待发货
-//        map.put("orderStatus", Constants.OrderStatusEnum.PAID.getCode());
-//        int waitDeliverCounts = ordersMapperCustom.getMyOrderStatusCounts(map);
-//
-//        //已发货、待收货
-//        map.put("orderStatus", Constants.OrderStatusEnum.SHIPPED.getCode());
-//        int waitReceiveCounts = ordersMapperCustom.getMyOrderStatusCounts(map);
-//
-//        //已完成、待评价
-//        map.put("orderStatus", Constants.OrderStatusEnum.ORDER_SUCCESS.getCode());
-//        map.put("isComment", YesOrNo.NO.type);
-//        int waitCommentCounts = ordersMapperCustom.getMyOrderStatusCounts(map);
-//
-//        OrderStatusCountsVO countsVO = new OrderStatusCountsVO(waitPayCounts,
-//                waitDeliverCounts,
-//                waitReceiveCounts,
-//                waitCommentCounts);
-//        return countsVO;
-//    }
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public OrderStatusCountsVO getOrderStatusCounts(String userId) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("userId",userId);
 
-//    @Override
-//    public PagedGridResult getOrdersTrend(String userId, Integer page, Integer pageSize) {
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("userId", userId);
-//
-//        PageHelper.startPage(page, pageSize);
-//        List<OrderStatus> list = ordersMapperCustom.getMyOrderTrend(map);
-//
-//        return setterPagedGrid(list, page);
-//    }
+        //待付款
+        map.put("orderStatus", Constants.OrderStatusEnum.NO_PAY.getCode());
+        int waitPayCounts = ordersMapperCustom.getMyOrderStatusCounts(map);
+
+        //已付款、待发货
+        map.put("orderStatus", Constants.OrderStatusEnum.PAID.getCode());
+        int waitDeliverCounts = ordersMapperCustom.getMyOrderStatusCounts(map);
+
+        //已发货、待收货
+        map.put("orderStatus", Constants.OrderStatusEnum.SHIPPED.getCode());
+        int waitReceiveCounts = ordersMapperCustom.getMyOrderStatusCounts(map);
+
+        //已完成、待评价
+        map.put("orderStatus", Constants.OrderStatusEnum.ORDER_SUCCESS.getCode());
+        map.put("isComment", YesOrNo.No.type);
+        int waitCommentCounts = ordersMapperCustom.getMyOrderStatusCounts(map);
+
+        OrderStatusCountsVO countsVO = new OrderStatusCountsVO();
+        countsVO.setWaitCommentCounts(waitPayCounts);
+        countsVO.setWaitDeliverCounts(waitDeliverCounts);
+        countsVO.setWaitReceiveCounts(waitReceiveCounts);
+        countsVO.setWaitCommentCounts(waitCommentCounts);
+        return countsVO;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public PagedGridResult getOrdersTrend(String userId, Integer page, Integer pageSize) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+
+        PageHelper.startPage(page, pageSize);
+        List<OrderStatus> list = ordersMapperCustom.getMyOrderTrend(map);
+
+        return setterPagedGrid(list, page);
+    }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -84,7 +89,7 @@ public class MyOrdersServiceImpl implements MyOrdersService {
             map.put("orderStatus",orderStatus);
         }
         PageHelper.startPage(page, pageSize);
-        List<MyOrdersVo> list = ordersMapperCustom.queryMyOrders(map);
+        List<MyOrdersVO> list = ordersMapperCustom.queryMyOrders(map);
 //        for(MyOrdersVo ordersVO : list){
 //            String orderNo = ordersVO.getOrderId();
 //            List<MySubOrderItemVO> subList = orderItemsMapper.getOrderItemsByOrderId(orderNo);

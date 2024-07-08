@@ -3,7 +3,7 @@ package com.lank.service.impl;
 import com.lank.enums.Sex;
 import com.lank.mapper.UsersMapper;
 import com.lank.pojo.Users;
-import com.lank.pojo.bo.UserBo;
+import com.lank.pojo.bo.UserBO;
 import com.lank.service.UserService;
 import com.lank.utils.DateUtil;
 import com.lank.utils.MD5Utils;
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public Users creatUser(UserBo userBo) {
+    public Users creatUser(UserBO userBo) {
         Users user = new Users();
         user.setId(sid.nextShort());
         user.setUsername(userBo.getUsername());

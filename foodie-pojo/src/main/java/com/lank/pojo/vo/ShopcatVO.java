@@ -1,12 +1,11 @@
-package com.lank.pojo.bo;
+package com.lank.pojo.vo;
 
-public class ShopcatBo {
+public class ShopcatVO {
     private String itemId;
     private String itemImgUrl;
     private String itemName;
     private String specId;
     private String specName;
-    private Integer buyCounts;
     private String priceDiscount;
     private String priceNormal;
 
@@ -48,14 +47,6 @@ public class ShopcatBo {
 
     public void setSpecName(String specName) {
         this.specName = specName;
-    }
-
-    public Integer getBuyCounts() {
-        return buyCounts;
-    }
-
-    public void setBuyCounts(Integer buyCounts) {
-        this.buyCounts = buyCounts;
     }
 
     public String getPriceDiscount() {

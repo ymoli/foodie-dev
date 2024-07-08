@@ -1,7 +1,7 @@
 package com.lank.controller;
 
 import com.lank.pojo.Users;
-import com.lank.pojo.bo.UserBo;
+import com.lank.pojo.bo.UserBO;
 import com.lank.service.UserService;
 import com.lank.utils.CookieUtils;
 import com.lank.utils.JSONResult;
@@ -42,7 +42,7 @@ public class PassportController {
 
     @PostMapping("/regist")
     @ApiOperation(value = "用户注册",notes = "用户注册",httpMethod = "POST")
-    public JSONResult regist(@RequestBody UserBo userBo, HttpServletRequest request, HttpServletResponse response){
+    public JSONResult regist(@RequestBody UserBO userBo, HttpServletRequest request, HttpServletResponse response){
         String username = userBo.getUsername();
         String password = userBo.getPassword();
         String confirmPwd = userBo.getConfirmPassword();
@@ -83,7 +83,7 @@ public class PassportController {
 
     @PostMapping("/login")
     @ApiOperation(value = "用户登录",notes = "用户登录",httpMethod = "POST")
-    public JSONResult login(@RequestBody UserBo userBo, HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public JSONResult login(@RequestBody UserBO userBo, HttpServletRequest request, HttpServletResponse response) throws Exception{
         String username = userBo.getUsername();
         String password = userBo.getPassword();
 

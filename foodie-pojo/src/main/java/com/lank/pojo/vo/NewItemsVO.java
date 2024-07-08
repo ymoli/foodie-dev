@@ -3,13 +3,13 @@ package com.lank.pojo.vo;
 import java.util.List;
 
 //首页最新商品VO
-public class NewItemsVo {
+public class NewItemsVO {
     private Integer rootCatId;
     private String rootCatName;
     private String slogan;
     private String catImage;
     private String bgColor;
-    private List<SimpleItemVo> simpleItemList;
+    private List<SimpleItemVO> simpleItemList;
 
     public Integer getRootCatId() {
         return rootCatId;
@@ -51,11 +51,11 @@ public class NewItemsVo {
         this.bgColor = bgColor;
     }
 
-    public List<SimpleItemVo> getSimpleItemList() {
+    public List<SimpleItemVO> getSimpleItemList() {
         return simpleItemList;
     }
 
-    public void setSimpleItemList(List<SimpleItemVo> simpleItemList) {
+    public void setSimpleItemList(List<SimpleItemVO> simpleItemList) {
         this.simpleItemList = simpleItemList;
     }
 }

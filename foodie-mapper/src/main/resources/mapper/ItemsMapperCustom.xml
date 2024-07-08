@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lank.mapper.ItemsMapperCustom">
 
-  <select id="queryItemComments" parameterType="Map" resultType="com.lank.pojo.vo.ItemCommentVo">
+  <select id="queryItemComments" parameterType="Map" resultType="com.lank.pojo.vo.ItemCommentVO">
     select ic.comment_level as commentLevel, ic.content, ic.sepc_name as sepcName, ic.created_time as createdTime,
     u.face as userFace, u.nickname as nickname
     from items_comments ic
@@ -16,7 +16,7 @@
 
 <!--   and i.item_name like concat('%', #{paramsMap.keywords}, '%')-->
 <!--   k:默认排序，根据价格；c:根据销量排序；p：根据价格排序-->
-    <select id="searchItems" parameterType="Map" resultType="com.lank.pojo.vo.SearchItemsVo">
+    <select id="searchItems" parameterType="Map" resultType="com.lank.pojo.vo.SearchItemsVO">
         select i.id as itemId, i.item_name as itemName, i.sell_counts as sellCounts, ii.url as imgUrl, tempSpec.price_discount as price
         from items i
         left join items_img ii on i.id = ii.item_id
@@ -43,7 +43,7 @@
            </choose>
     </select>
 
-    <select id="searchItemsByThirdCat" parameterType="Map" resultType="com.lank.pojo.vo.SearchItemsVo">
+    <select id="searchItemsByThirdCat" parameterType="Map" resultType="com.lank.pojo.vo.SearchItemsVO">
         select i.id as itemId, i.item_name as itemName, i.sell_counts as sellCounts, ii.url as imgUrl, tempSpec.price_discount as price
         from items i
         left join items_img ii on i.id = ii.item_id
@@ -68,7 +68,7 @@
             </choose>
     </select>
 
-    <select id="queryItemsBySpecIds"  parameterType="List" resultType="com.lank.pojo.vo.ShopcatVo">
+    <select id="queryItemsBySpecIds"  parameterType="List" resultType="com.lank.pojo.vo.ShopcatVO">
         SELECT  i.id AS itemId, i.item_name AS itemName, ig.url AS itemImgUrl, ic.id AS specId, ic.`name` AS specName,
                 ic.price_discount AS priceDiscount, ic.price_normal AS priceNormal
         FROM items_spec ic

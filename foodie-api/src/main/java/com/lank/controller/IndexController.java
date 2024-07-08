@@ -3,8 +3,8 @@ package com.lank.controller;
 import com.lank.enums.YesOrNo;
 import com.lank.pojo.Carousel;
 import com.lank.pojo.Category;
-import com.lank.pojo.vo.CategoryVo;
-import com.lank.pojo.vo.NewItemsVo;
+import com.lank.pojo.vo.CategoryVO;
+import com.lank.pojo.vo.NewItemsVO;
 import com.lank.service.CarouselService;
 import com.lank.service.CategoryService;
 import com.lank.utils.JSONResult;
@@ -63,7 +63,7 @@ public class IndexController {
             return JSONResult.errorMsg("分类不存在");
         }
 
-        List<CategoryVo> list = categoryService.getSubCatList(rootCatId);
+        List<CategoryVO> list = categoryService.getSubCatList(rootCatId);
 
         return JSONResult.ok(list);
     }
@@ -78,7 +78,7 @@ public class IndexController {
             return JSONResult.errorMsg("分类不存在");
         }
 
-        List<NewItemsVo> list = categoryService.getSixNewItemsLazy(rootCatId);
+        List<NewItemsVO> list = categoryService.getSixNewItemsLazy(rootCatId);
 
         return JSONResult.ok(list);
     }

@@ -1,4 +1,4 @@
-package com.lank.pojo.vo;
+package com.lank.pojo.vo.center;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import java.util.List;
 
 //用户中心-我的订单列表vo
 @Data
-public class MyOrdersVo {
+public class MyOrdersVO {
     private String orderId;
     private Date createdTime;
     private Integer payMethod;

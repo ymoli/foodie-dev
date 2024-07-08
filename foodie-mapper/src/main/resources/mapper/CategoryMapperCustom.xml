@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.lank.mapper.CategoryMapperCustom">
-      <resultMap id="categoryVo" type="com.lank.pojo.vo.CategoryVo">
+      <resultMap id="categoryVo" type="com.lank.pojo.vo.CategoryVO">
             <id column="id" property="id" />
             <result column="name" property="name" />
             <result column="type" property="type" />
@@ -13,7 +13,7 @@
                   property：对应父类中子类的属性名，即三级标签的属性名
                   ofType：对应子类的类型，即三级分类的vo
             -->
-            <collection property="subCatList" ofType="com.lank.pojo.vo.SubCategoryVo">
+            <collection property="subCatList" ofType="com.lank.pojo.vo.SubCategoryVO">
                   <id column="subId" property="subId" />
                   <result column="subName" property="subName" />
                   <result column="subType" property="subType" />
@@ -39,14 +39,14 @@
                 f.father_id = #{rootCatId}
       </select>
 
-    <resultMap id="sixNewItemVo" type="com.lank.pojo.vo.NewItemsVo">
+    <resultMap id="sixNewItemVo" type="com.lank.pojo.vo.NewItemsVO">
         <id column="rootCatId" property="rootCatId" />
         <result column="rootCatName" property="rootCatName" />
         <result column="slogan" property="slogan" />
         <result column="catImage" property="catImage" />
         <result column="bgColor" property="bgColor" />
 
-        <collection property="simpleItemList" ofType="com.lank.pojo.vo.SimpleItemVo">
+        <collection property="simpleItemList" ofType="com.lank.pojo.vo.SimpleItemVO">
             <id column="itemId" property="itemId" />
             <result column="itemName" property="itemName" />
             <result column="itemUrl" property="itemUrl" />

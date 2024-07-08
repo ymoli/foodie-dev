@@ -3,8 +3,8 @@ package com.lank.service.impl;
 import com.lank.mapper.CategoryMapper;
 import com.lank.mapper.CategoryMapperCustom;
 import com.lank.pojo.Category;
-import com.lank.pojo.vo.CategoryVo;
-import com.lank.pojo.vo.NewItemsVo;
+import com.lank.pojo.vo.CategoryVO;
+import com.lank.pojo.vo.NewItemsVO;
 import com.lank.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,17 +39,17 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public List<CategoryVo>  getSubCatList(Integer rootCatId) {
-        List<CategoryVo>  result = categoryMapperCustom.getSubCatList(rootCatId);
+    public List<CategoryVO>  getSubCatList(Integer rootCatId) {
+        List<CategoryVO>  result = categoryMapperCustom.getSubCatList(rootCatId);
         return result;
     }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public List<NewItemsVo> getSixNewItemsLazy(Integer rootCatId) {
+    public List<NewItemsVO> getSixNewItemsLazy(Integer rootCatId) {
         Map<String,Object> map = new HashMap<>();
         map.put("rootCatId",rootCatId);
-        List<NewItemsVo> result = categoryMapperCustom.getSixNewItemsLazy(map);
+        List<NewItemsVO> result = categoryMapperCustom.getSixNewItemsLazy(map);
         return result;
     }
 }

@@ -4,9 +4,9 @@ import com.lank.pojo.Items;
 import com.lank.pojo.ItemsImg;
 import com.lank.pojo.ItemsParam;
 import com.lank.pojo.ItemsSpec;
-import com.lank.pojo.vo.CommentLevelCountVo;
-import com.lank.pojo.vo.ItemInfoVo;
-import com.lank.pojo.vo.ShopcatVo;
+import com.lank.pojo.vo.CommentLevelCountVO;
+import com.lank.pojo.vo.ItemInfoVO;
+import com.lank.pojo.vo.ShopcatVO;
 import com.lank.service.ItemService;
 import com.lank.utils.JSONResult;
 import com.lank.utils.PagedGridResult;
@@ -40,7 +40,7 @@ public class ItemsController extends BaseController{
         List<ItemsImg> itemsImg = itemService.queryItemImgList(itemId);
         ItemsParam itemsParam = itemService.queryItemParam(itemId);
         List<ItemsSpec> itemsSpec = itemService.queryItemSpecList(itemId);
-        ItemInfoVo itemInfoVo = new ItemInfoVo();
+        ItemInfoVO itemInfoVo = new ItemInfoVO();
         itemInfoVo.setItem(items);
         itemInfoVo.setItemImgList(itemsImg);
         itemInfoVo.setItemParams(itemsParam);
@@ -56,7 +56,7 @@ public class ItemsController extends BaseController{
         if (StringUtils.isBlank(itemId)){
             return JSONResult.errorMsg("商品id不能为空!");
         }
-        CommentLevelCountVo countVo = itemService.queryCommentCounts(itemId);
+        CommentLevelCountVO countVo = itemService.queryCommentCounts(itemId);
         return JSONResult.ok(countVo);
     }
 
@@ -144,7 +144,7 @@ public class ItemsController extends BaseController{
             return JSONResult.ok();
         }
 
-        List<ShopcatVo> list = itemService.queryItemsBySpecIds(itemSpecIds);
+        List<ShopcatVO> list = itemService.queryItemsBySpecIds(itemSpecIds);
         return JSONResult.ok(list);
     }
 }

@@ -10,7 +10,7 @@ import com.lank.pojo.OrderItems;
 import com.lank.pojo.OrderStatus;
 import com.lank.pojo.Orders;
 import com.lank.pojo.bo.center.OrderItemsCommentBO;
-import com.lank.pojo.vo.MyCommentVO;
+import com.lank.pojo.vo.center.MyCommentVO;
 import com.lank.service.center.MyCommentsService;
 import com.lank.service.impl.BasicService;
 import com.lank.utils.PagedGridResult;

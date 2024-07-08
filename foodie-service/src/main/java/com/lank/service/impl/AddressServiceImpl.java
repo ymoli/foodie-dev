@@ -3,7 +3,7 @@ package com.lank.service.impl;
 import com.lank.enums.YesOrNo;
 import com.lank.mapper.UserAddressMapper;
 import com.lank.pojo.UserAddress;
-import com.lank.pojo.bo.AddressBo;
+import com.lank.pojo.bo.AddressBO;
 import com.lank.service.AddressService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
@@ -34,7 +34,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public void addNewUserAddress(AddressBo addressBo) {
+    public void addNewUserAddress(AddressBO addressBo) {
         //判断当前用户是否存在地址，如果没有，新增为默认地址
         Integer isDefault = 0;
         List<UserAddress> addressList = this.queryAll(addressBo.getUserId());
@@ -54,7 +54,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public void updateUserAddress(AddressBo addressBo) {
+    public void updateUserAddress(AddressBO addressBo) {
         String addressId = addressBo.getAddressId();
         UserAddress pendingAddress = new UserAddress();
         BeanUtils.copyProperties(addressBo,pendingAddress);

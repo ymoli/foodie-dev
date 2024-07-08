@@ -1,7 +1,7 @@
 package com.lank.pojo.vo;
 
 //用于展示商品评价数量的vo
-public class CommentLevelCountVo {
+public class CommentLevelCountVO {
     public Integer totalCounts;
     public Integer goodCounts;
     public Integer normalCounts;

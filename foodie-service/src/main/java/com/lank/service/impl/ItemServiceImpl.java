@@ -6,10 +6,10 @@ import com.lank.enums.CommentLevel;
 import com.lank.enums.YesOrNo;
 import com.lank.mapper.*;
 import com.lank.pojo.*;
-import com.lank.pojo.vo.CommentLevelCountVo;
-import com.lank.pojo.vo.ItemCommentVo;
-import com.lank.pojo.vo.SearchItemsVo;
-import com.lank.pojo.vo.ShopcatVo;
+import com.lank.pojo.vo.CommentLevelCountVO;
+import com.lank.pojo.vo.ItemCommentVO;
+import com.lank.pojo.vo.SearchItemsVO;
+import com.lank.pojo.vo.ShopcatVO;
 import com.lank.service.ItemService;
 import com.lank.utils.DesensitizationUtil;
 import com.lank.utils.PagedGridResult;
@@ -81,8 +81,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public CommentLevelCountVo queryCommentCounts(String itemId) {
-        CommentLevelCountVo commentLevelCountVo = new CommentLevelCountVo();
+    public CommentLevelCountVO queryCommentCounts(String itemId) {
+        CommentLevelCountVO commentLevelCountVo = new CommentLevelCountVO();
         Integer goodCounts = getCommentCounts(itemId, CommentLevel.GOOD.type);
         Integer normalCounts = getCommentCounts(itemId, CommentLevel.NORMAL.type);
         Integer badCounts = getCommentCounts(itemId, CommentLevel.BAD.type);
@@ -118,7 +118,7 @@ public class ItemServiceImpl implements ItemService {
          */
         PageHelper.startPage(page, pageSize);
 
-        List<ItemCommentVo> list = itemsMapperCustom.queryItemComments(map);
+        List<ItemCommentVO> list = itemsMapperCustom.queryItemComments(map);
         list.stream().forEach(item -> {
             item.setNickname(DesensitizationUtil.commonDisplay(item.getNickname()));
         });
@@ -135,7 +135,7 @@ public class ItemServiceImpl implements ItemService {
         //mybatis-pagehelper
         PageHelper.startPage(page, pageSize);
 
-        List<SearchItemsVo> list = itemsMapperCustom.searchItems(map);
+        List<SearchItemsVO> list = itemsMapperCustom.searchItems(map);
         return setterPagedGrid(list,page);
     }
 
@@ -148,13 +148,13 @@ public class ItemServiceImpl implements ItemService {
         //mybatis-pagehelper
         PageHelper.startPage(page, pageSize);
 
-        List<SearchItemsVo> list = itemsMapperCustom.searchItems(map);
+        List<SearchItemsVO> list = itemsMapperCustom.searchItems(map);
         return setterPagedGrid(list,page);
     }
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
-    public List<ShopcatVo> queryItemsBySpecIds(String specIds) {
+    public List<ShopcatVO> queryItemsBySpecIds(String specIds) {
         String[] ids = specIds.split(",");
         List<String> specIdsList = new ArrayList<>();
         Collections.addAll(specIdsList,ids);

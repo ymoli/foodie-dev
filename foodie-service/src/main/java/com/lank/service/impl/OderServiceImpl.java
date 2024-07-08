@@ -6,9 +6,9 @@ import com.lank.mapper.OrderItemsMapper;
 import com.lank.mapper.OrderStatusMapper;
 import com.lank.mapper.OrdersMapper;
 import com.lank.pojo.*;
-import com.lank.pojo.bo.SubmitOrderBo;
-import com.lank.pojo.vo.MerchantOrdersVo;
-import com.lank.pojo.vo.OrderVo;
+import com.lank.pojo.bo.SubmitOrderBO;
+import com.lank.pojo.vo.MerchantOrdersVO;
+import com.lank.pojo.vo.OrderVO;
 import com.lank.service.AddressService;
 import com.lank.service.ItemService;
 import com.lank.service.OrderService;
@@ -45,7 +45,7 @@ public class OderServiceImpl implements OrderService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public OrderVo createOrder(SubmitOrderBo submitOrderBo) {
+    public OrderVO createOrder(SubmitOrderBO submitOrderBo) {
         String userId = submitOrderBo.getUserId();
         String itemSpecIds = submitOrderBo.getItemSpecIds();
         String addressId = submitOrderBo.getAddressId();
@@ -112,13 +112,13 @@ public class OderServiceImpl implements OrderService {
         waitOrderStatus.setCreatedTime(new Date());
         orderStatusMapper.insert(waitOrderStatus);
         //4.构建商户订单，用于传给支付中心
-        MerchantOrdersVo merchantOrdersVo = new MerchantOrdersVo();
+        MerchantOrdersVO merchantOrdersVo = new MerchantOrdersVO();
         merchantOrdersVo.setMerchantOrderId(orderId);
         merchantOrdersVo.setMerchantUserId(userId);
         merchantOrdersVo.setAmount(realAmount + postAmount);
         merchantOrdersVo.setPayMethod(payMethod);
         //5.构建自定义订单Vo
-        OrderVo orderVo = new OrderVo();
+        OrderVO orderVo = new OrderVO();
         orderVo.setOrderId(orderId);
         orderVo.setMerchantOrdersVo(merchantOrdersVo);
 

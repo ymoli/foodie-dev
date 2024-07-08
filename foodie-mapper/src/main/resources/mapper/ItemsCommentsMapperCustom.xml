@@ -4,13 +4,13 @@
 
   <select id="saveComments" parameterType="Map">
     insert into items_comments
-    ( id, user_id, user_fake_nickname, user_face, item_id, item_name, item_spec_id, sepc_name, comment_level, content, created_time, updated_time )
+    ( id, user_id, item_id, item_name, item_spec_id, sepc_name, comment_level, content, created_time, updated_time )
     values
       <foreach collection="commentList" item="item" index="index" separator=",">
-       ( #{item.commentId}, #{userId}, #{userFakeNickname}, #{userFace}, #{item.itemId}, #{item.itemName}, #{item.itemSpecId}, #{item.itemSpecName}, #{item.commentLevel}, #{item.content}, now(), now() )
+       ( #{item.commentId}, #{userId}, #{item.itemId}, #{item.itemName}, #{item.itemSpecId}, #{item.itemSpecName}, #{item.commentLevel}, #{item.content}, now(), now() )
        </foreach>
   </select>
-  <resultMap id="myComments" type="com.lank.pojo.vo.MyCommentVO">
+  <resultMap id="myComments" type="com.lank.pojo.vo.center.MyCommentVO">
     <id column="commentId" property="commentId"/>
     <result column="content" property="content"/>
     <result column="createdTime" property="createdTime"/>

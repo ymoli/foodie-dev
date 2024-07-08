@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 //业务层封装的数据，前端数据封装到后端的entity
 @ApiModel(value = "用户对象BO", description = "从客户端，由用户传入的数据，封装成此entity")
-public class UserBo {
+public class UserBO {
     @ApiModelProperty(value = "用户名",name = "username",example = "lank",required = true)
     private String username;
     @ApiModelProperty(value = "密码",name = "password",example = "123456",required = true)

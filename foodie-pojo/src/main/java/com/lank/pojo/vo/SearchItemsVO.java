@@ -1,7 +1,7 @@
 package com.lank.pojo.vo;
 
 //用于展示商品搜索结果列表的vo
-public class SearchItemsVo {
+public class SearchItemsVO {
     private String itemId;
     private String itemName;
     private int sellCounts;

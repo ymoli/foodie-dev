@@ -95,5 +95,38 @@ public class MyOrdersController extends BaseController {
         return JSONResult.ok();
     }
 
+    @ApiOperation(value = "获得订单状态数概况",notes = "获得订单状态数概况",httpMethod = "POST")
+    @PostMapping("/statusCounts")
+    public JSONResult statusCounts(
+            @ApiParam(name = "userId",value = "用户id",required = true)
+            @RequestParam String userId){
+
+        if ( StringUtils.isBlank(userId)){
+            return JSONResult.errorMsg(null);
+        }
+        return JSONResult.ok(myOrdersService.getOrderStatusCounts(userId));
+    }
+
+    @ApiOperation(value = "查询订单去向",notes = "查询订单去向",httpMethod = "POST")
+    @PostMapping("/trend")
+    public JSONResult trend(
+            @ApiParam(name = "userId",value = "用户id",required = true)
+            @RequestParam String userId,
+            @ApiParam(name = "page",value = "查询下一页的第几页",required = false)
+            @RequestParam Integer page,
+            @ApiParam(name = "pageSize",value = "查询每一页的内容",required = false)
+            @RequestParam Integer pageSize){
+        if ( StringUtils.isBlank(userId)){
+            return JSONResult.errorMsg(null);
+        }
+        if(page == null){
+            page = 1;
+        }
+        if(pageSize == null){
+            pageSize = COMMENT_PAGE_SIZE;
+        }
+        PagedGridResult grid = myOrdersService.getOrdersTrend(userId,page,pageSize);
+        return JSONResult.ok(grid);
+    }
 
 }

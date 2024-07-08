@@ -3,7 +3,7 @@ package com.lank.pojo.vo;
 import java.util.Date;
 
 //用于展示商品评价的vo
-public class ItemCommentVo {
+public class ItemCommentVO {
     private Integer commentLevel;
     private String content;
     private String sepcName;

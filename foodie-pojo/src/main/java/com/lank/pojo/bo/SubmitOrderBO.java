@@ -1,7 +1,7 @@
 package com.lank.pojo.bo;
 
 //用于创建订单
-public class SubmitOrderBo {
+public class SubmitOrderBO {
     private String userId;
     private String itemSpecIds;
     private String addressId;

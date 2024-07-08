@@ -1,18 +1,18 @@
 package com.lank.mapper;
 
-import com.lank.pojo.vo.ItemCommentVo;
-import com.lank.pojo.vo.SearchItemsVo;
-import com.lank.pojo.vo.ShopcatVo;
+import com.lank.pojo.vo.ItemCommentVO;
+import com.lank.pojo.vo.SearchItemsVO;
+import com.lank.pojo.vo.ShopcatVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
 
 public interface ItemsMapperCustom {
-    public List<ItemCommentVo> queryItemComments(@Param("paramsMap") Map<String,Object> map);
-    public List<SearchItemsVo> searchItems(@Param("paramsMap") Map<String,Object> map);
-    public List<SearchItemsVo> searchItemsByThirdCat(@Param("paramsMap") Map<String,Object> map);
-    public List<ShopcatVo> queryItemsBySpecIds(@Param("paramsList") List specIdsList);
+    public List<ItemCommentVO> queryItemComments(@Param("paramsMap") Map<String,Object> map);
+    public List<SearchItemsVO> searchItems(@Param("paramsMap") Map<String,Object> map);
+    public List<SearchItemsVO> searchItemsByThirdCat(@Param("paramsMap") Map<String,Object> map);
+    public List<ShopcatVO> queryItemsBySpecIds(@Param("paramsList") List specIdsList);
     public int decreaseItemSpecStock(@Param("specId") String specId,@Param("pendingCounts") int pendingCounts);
 
 }
