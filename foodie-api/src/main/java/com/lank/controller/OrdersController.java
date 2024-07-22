@@ -70,10 +70,11 @@ public class OrdersController extends BaseController {
 
         ResponseEntity<JSONResult> responseEntity = restTemplate.postForEntity(paymentUrl,entity,JSONResult.class);
         JSONResult paymentResult = responseEntity.getBody();
-        if (paymentResult.getStatus() != 200){
-            return JSONResult.errorMsg("支付中心创建订单失败，请联系管理员");
-        }
-
+//        if (paymentResult.getStatus() != 200){
+//            return JSONResult.errorMsg("支付中心创建订单失败，请联系管理员");
+//        }
+        //修改后台订单状态
+        orderService.updateOrderStatus(orderId, OrderStatusEnum.WAIT_DELIVER.type);
         return JSONResult.ok(orderId);
     }
 
