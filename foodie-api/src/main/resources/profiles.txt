@@ -1,0 +1,31 @@
+profiles 多环境配置梳理：
+1.数据源配置
+    1.1 url根据自身情况去修改为localhost或内网IP（集群或者分布式系统，一定要使用内网IP）
+    1.2 username/password改为你自己的用户名、密码
+2. mybatis日志打印
+    dev  可以打印
+    prod 无须打印
+3. 图片保存目录 和 图片服务请求路径配置
+    \\workspace\\images\\foodie\\face
+    http://192.168.125.128:8088/foodie-api/foodie/face/
+4. 从支付中心回调天天吃货后端服务的回调地址
+    http://192.168.125.128:8088/foodie-api/orders/notifyMerchantOrderPaid
+
+打包方式：
+1.jar： 服务化的概念，后续接触springcloud，所有服务打包都是以jar的形式存在
+2.war： 应用程序的概念，也可以向外提供服务和接口
+    2.1 <packaging>war</packaging>
+    2.2 移除自带的内置tomcat
+        <exclusions>
+            <exclusion>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+                <groupId>org.springframework.boot</groupId>
+            </exclusion>
+        </exclusions>
+    2.3 添加依赖
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    2.4 添加war启动类 WarStarterApplication
